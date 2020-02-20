@@ -1,0 +1,28 @@
+1) >grep -c ACTE[[:blank:]] Avare_UTF-8.txt
+    5
+   >grep -c Scène[[:blank:]] Avare_UTF-8.txt
+    32
+
+2) >grep -c [[:blank:]]:[[:blank:]] Avare_UTF-8.txt
+    961
+
+3) >grep -c ^HARPAGON[[:blank:]]:[[:blank:]] Avare_UTF-8.txt
+    338
+
+4) >grep '^\(\(HARPAGON\)\|\(VALERE\)\)[[:blank:]]:[[:blank:]]' Avare_UTF-8.txt
+
+5) >grep '^[A-Z]*[[:blank:]]:[[:blank:]]' Avare_UTF-8.txt | grep -v HARPAGON
+
+6) >grep -c '^.*Scène.*$^$^.*$' Avare_UTF-8.txt
+
+7)
+
+8)
+
+9)
+
+10)
+
+11)
+
+12)

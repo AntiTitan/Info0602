@@ -1,0 +1,36 @@
+1) >wc Autour_de_la_Lune_UTF-8.txt
+    3429  55091 367248 Autour_de_la_Lune_UTF-8.txt
+    
+    nbLigne 3429
+    nbMots 55091
+    nbOctets 367248
+
+2) >grep -c Lune Autour_de_la_Lune_UTF-8.txt
+    272
+
+    "Lune" est présent 272 fois dans le texte.
+
+3) >grep -c lune Autour_de_la_Lune_UTF-8.txt
+    29
+
+    "lune" est présent 29 fois dans le texte.
+
+4) >grep -n -i Lune Autour_de_la_Lune_UTF-8.txt
+
+5) >grep -c -i Lune Autour_de_la_Lune_UTF-8.txt
+    285
+
+6) >grep -c [[:blank:]]lune[[:blank:]] Autour_de_la_Lune_UTF-8.txt
+
+7) >grep -c 'ette\.' Autour_de_la_Lune_UTF-8.txt
+    6
+
+8) >grep -o '[a-z]*ette\.' Autour_de_la_Lune_UTF-8.txt
+    couchette.
+    allumette.
+    lunette.
+    dunette.
+    corvette.
+    corvette.
+
+9) >grep -o '^\".*\-.*\"' Autour_de_la_Lune_UTF-8.txt
