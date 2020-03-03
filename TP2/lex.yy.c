@@ -788,7 +788,7 @@ YY_RULE_SETUP
 case 5:
 YY_RULE_SETUP
 #line 21 "calculatrice.lex"
-{pile[sommet-2] -= pile[sommet-1]; sommet--;printf("resultat : %f\n",pile[sommet-1]);}
+{pile[sommet-2] = pile[sommet-1] - pile[sommet-2]; sommet--;printf("resultat : %f\n",pile[sommet-1]);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
@@ -798,7 +798,7 @@ YY_RULE_SETUP
 case 7:
 YY_RULE_SETUP
 #line 23 "calculatrice.lex"
-{pile[sommet-2] /= pile[sommet-1]; sommet--;printf("resultat : %f\n",pile[sommet-1]);}
+{pile[sommet-2] = pile[sommet-1] / pile[sommet-2]; sommet--;printf("resultat : %f\n",pile[sommet-1]);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
@@ -813,7 +813,7 @@ YY_RULE_SETUP
 case 10:
 YY_RULE_SETUP
 #line 26 "calculatrice.lex"
-{tmp = pile[sommet-1]; pile[sommet-1]=pile[sommet -2]; pile[sommet -2]=tmp;}
+{tmp = pile[sommet-1]; pile[sommet-1]=pile[sommet-2]; pile[sommet -2]=tmp;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
@@ -1850,5 +1850,6 @@ int main(int argc,char * argv []) {
 
 /*execution:
     flex calculatrice.lex
-    
+    gcc -o toto lex.yy.c -lfl
+    ./toto
 */

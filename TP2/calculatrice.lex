@@ -16,14 +16,29 @@ REEL {ENTIER}(\.{ENTIER}+)?
     /*regles*/
 {ENTIER}    {pile[sommet] = atoi(yytext); sommet++;}
 {REEL}      {pile[sommet] = atoi(yytext); sommet++;}
+
 "-"{ENTIER} {pile[sommet] = atoi(yytext); sommet++;}
-"+"         {pile[sommet-2] += pile[sommet-1]; sommet--;printf("resultat : %f\n",pile[sommet-1]);}
-"-"         {pile[sommet-2] -= pile[sommet-1]; sommet--;printf("resultat : %f\n",pile[sommet-1]);}
-"*"         {pile[sommet-2] *= pile[sommet-1]; sommet--;printf("resultat : %f\n",pile[sommet-1]);}
-"/"         {pile[sommet-2] /= pile[sommet-1]; sommet--;printf("resultat : %f\n",pile[sommet-1]);}
+"+"         {pile[sommet-2] += pile[sommet-1];
+            sommet--;
+            printf("resultat : %f\n",pile[sommet-1]);}
+"-"         {pile[sommet-2] = pile[sommet-1] - pile[sommet-2];
+            sommet--;
+            printf("resultat : %f\n",pile[sommet-1]);}
+"*"         {pile[sommet-2] *= pile[sommet-1];
+            sommet--;
+            printf("resultat : %f\n",pile[sommet-1]);}
+"/"         {pile[sommet-2] = pile[sommet-1] / pile[sommet-2];
+            sommet--;
+            printf("resultat : %f\n",pile[sommet-1]);}
+
 "="         {for(int i=0; i<20; i++) printf(" %f ",pile[i]); printf("\n");}
 "CLEAR"     {for(int i=0; i<20; i++) pile[i]=0; sommet=0; printf("Pile vidée\n");}
-"SWAP"      {tmp = pile[sommet-1]; pile[sommet-1]=pile[sommet-2]; pile[sommet -2]=tmp;}
+"SWAP"      {
+                tmp = pile[sommet-1];
+                pile[sommet-1]=pile[sommet-2];
+                pile[sommet -2]=tmp;
+            }
+            
 .       ;
 \n  ;
 
