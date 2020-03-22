@@ -12,6 +12,7 @@ typedef struct{
 typedef struct{
 	
 }fonction_t;
+
 typedef struct noeud {
 	struct noeud *pere;
 	struct noeud *droite;

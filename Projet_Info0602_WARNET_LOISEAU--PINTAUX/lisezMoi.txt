@@ -1,0 +1,3 @@
+Pour utiliser json:
+
+sudo apt install json-c-dev

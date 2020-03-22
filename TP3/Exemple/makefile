@@ -29,3 +29,4 @@ clean:
 	rm -f *~
 	rm -f *.stackdump
 	rm -f *.o
+	rm -f *.exe
