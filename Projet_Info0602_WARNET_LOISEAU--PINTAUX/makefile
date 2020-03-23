@@ -24,7 +24,7 @@ OBJETS_O = $(OBJETS) $(EXEC_O)
 #
 CC = gcc
 CCFLAGS = -Wall -O3 -Werror -ansi -pedantic -g 
-CCLIBS = -ljson
+CCLIBS = -ljson-c
 
 #
 # REGLES
@@ -84,4 +84,4 @@ archive: clean
 	@echo "Termine."
 
 # DEPENDANCES
-parsing.o: parsing.c struct.h
+parsing.o:parsing.c struct.h
