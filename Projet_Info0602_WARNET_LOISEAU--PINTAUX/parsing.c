@@ -5,10 +5,11 @@
 #define MAX_SIZE 200
 
 /*changer en fonction en lire_plateau*/
-
+/*man json-c: https://json-c.github.io/json-c/json-c-0.10/doc/html/json__object_8h.html*/
 int main(int argc, char *argv[]) {
     FILE *fd;
     int rd;
+    int type;
     char buffer[MAX_SIZE];
 
     struct json_object *parsed_json;
@@ -31,6 +32,7 @@ int main(int argc, char *argv[]) {
     fclose(fd);
 
     parsed_json = json_tokener_parse(buffer);
+
     json_object_object_get_ex(parsed_json, "largeur", &largeur);
     json_object_object_get_ex(parsed_json, "hauteur", &hauteur);
     json_object_object_get_ex(parsed_json, "debut", &debut);
@@ -39,9 +41,12 @@ int main(int argc, char *argv[]) {
     printf("read: %d\n", rd);
     printf("largeur: %d\n", json_object_get_int(largeur));
     printf("hauteur: %d\n", json_object_get_int(hauteur));
+    printf("OK\n");
 
     /*deb = json_object_array_length(debut);*/
+    /*pb pas un array? */
     nb_cases = json_object_array_length(cases);
+    printf("nb de cases %lu\n", nb_cases);
 
     for (i=0; i<nb_cases; i++) {
         contenu = json_object_array_get_idx(cases,  i);
