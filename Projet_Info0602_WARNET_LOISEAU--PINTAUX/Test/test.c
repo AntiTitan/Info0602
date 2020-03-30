@@ -1,5 +1,7 @@
-#include<stdio.h>
-#include<json-c/json.h>
+#include <stdio.h>
+#include <json-c/json.h>
+#include <errno.h>
+#include <string.h>
 
 int main(int argc, char **argv) {
 	FILE *fp;
@@ -10,11 +12,27 @@ int main(int argc, char **argv) {
 	struct json_object *friends;
 	struct json_object *friend;
 	size_t n_friends;
+	int id;
 
 	size_t i;	
 
 	fp = fopen("test.json","r");
-	fread(buffer, 1024, 1, fp);
+	if(fp==NULL){
+		printf("error fopen : %s\n",strerror(errno));
+	}
+	if(fread(buffer, 1024, sizeof(char), fp)==0){
+		printf("Problème\n");
+		if(ferror(fp)==-1){
+			return EXIT_FAILURE;
+		}
+		clearerr(fp);
+		id=fread(buffer, 1024, sizeof(char), fp);
+		if(id<1024){
+			printf("id=%d\n",id);
+			return EXIT_FAILURE;
+		}
+		
+	}
 	fclose(fp);
 
 	parsed_json = json_tokener_parse(buffer);
@@ -32,5 +50,6 @@ int main(int argc, char **argv) {
 	for(i=0;i<n_friends;i++) {
 		friend = json_object_array_get_idx(friends, i);
 		printf("%lu. %s\n",i+1,json_object_get_string(friend));
-	}	
+	}
+	return EXIT_SUCCESS;	
 }

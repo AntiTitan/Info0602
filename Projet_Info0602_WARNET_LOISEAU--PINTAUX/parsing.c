@@ -5,7 +5,7 @@
 #define MAX_SIZE 200
 
 /*changer en fonction en lire_plateau*/
-/*man json-c: https://json-c.github.io/json-c/json-c-0.10/doc/html/json__object_8h.html*/
+/*man json-c: https://json-c.github.io/json-c/json-c-0.10/doc/html/json__object_8h.html  */
 int main(int argc, char *argv[]) {
     FILE *fd;
     int rd;
