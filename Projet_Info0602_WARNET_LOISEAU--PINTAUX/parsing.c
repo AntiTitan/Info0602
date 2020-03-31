@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <json-c/json.h>
 #include "struct.h"
 
@@ -7,9 +6,7 @@
 /*changer en fonction en lire_plateau*/
 /*man json-c: https://json-c.github.io/json-c/json-c-0.10/doc/html/json__object_8h.html  */
 int main(int argc, char *argv[]) {
-    FILE *fd;
-    int rd;
-    int type;
+    int fd,exists;
     char buffer[MAX_SIZE];
 
     struct json_object *parsed_json;
@@ -27,18 +24,43 @@ int main(int argc, char *argv[]) {
     size_t nb_cases;
     size_t i;
     /*verification retour systeme !!!!!!!!!!!!!!!!!*/
-    fd = fopen(argv[1], "r");
-    rd = fread(buffer, MAX_SIZE, 1, fd);
-    fclose(fd);
+    fd = open(argv[1], O_RDONLY);
+    if(fd==-1){
+		printf("error fopen : %s\n",strerror(errno));
+	}
+	if(read(fd, buffer, MAX_SIZE)==0){
+		printf("Problème\n");
+		return EXIT_FAILURE;		
+	}
+	close(fd);
 
     parsed_json = json_tokener_parse(buffer);
 
-    json_object_object_get_ex(parsed_json, "largeur", &largeur);
-    json_object_object_get_ex(parsed_json, "hauteur", &hauteur);
-    json_object_object_get_ex(parsed_json, "debut", &debut);
-    json_object_object_get_ex(parsed_json, "cases", &cases);
-
-    printf("read: %d\n", rd);
+    exists = json_object_object_get_ex(parsed_json, "largeur", &largeur);
+    if ( FALSE == exists )
+    {
+        printf( "\"largeur\" not found in JSON\n" );
+        return EXIT_FAILURE;
+    }
+    exists = json_object_object_get_ex(parsed_json, "hauteur", &hauteur);
+    if ( FALSE == exists )
+    {
+        printf( "\"hauteur\" not found in JSON\n" );
+        return EXIT_FAILURE;
+    }
+    exists = json_object_object_get_ex(parsed_json, "debut", &debut);
+    if ( FALSE == exists )
+    {
+        printf( "\"debut\" not found in JSON\n" );
+        return EXIT_FAILURE;
+    }
+    exists = json_object_object_get_ex(parsed_json, "cases", &cases);
+    if ( FALSE == exists )
+    {
+        printf( "\"cases\" not found in JSON\n" );
+        return EXIT_FAILURE;
+    }
+    /*printf("read: %d\n", rd);*/
     printf("largeur: %d\n", json_object_get_int(largeur));
     printf("hauteur: %d\n", json_object_get_int(hauteur));
     printf("OK\n");

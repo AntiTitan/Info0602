@@ -1,7 +1,16 @@
 #ifndef STRUCT_H
 #define STRUCT_H
 
-#include <stdlib.h>/*
+#include <stdlib.h>
+#include <stdio.h>
+#include <json-c/json.h>
+#include <errno.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+/*
 #define HAUT     0
 #define DROITE   1
 #define BAS      2
