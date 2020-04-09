@@ -6,28 +6,28 @@ void avance(robot_t robot, case_t** grille) {
     if (robot.dir == HAUT) {
         x = robot.x - 1;
         y = robot.y;
-        if (grille[x][y]->type == VIDE) {
+        if (grille[x][y].type == VIDE) {
             robot.x = x;
         }
     }
     else if (robot.dir == DROITE) {
         x = robot.x;
         y = robot.y + 1;
-        if (grille[x][y]->type == VIDE) {
+        if (grille[x][y].type == VIDE) {
             robot.y = y;
         }
     }
     else if (robot.dir == BAS) {
         x = robot.x + 1;
         y = robot.y;
-        if (grille[x][y]->type == VIDE) {
+        if (grille[x][y].type == VIDE) {
             robot.x = x;
         }
     }
     else if (robot.dir == GAUCHE) {
         x = robot.x;
         y = robot.y - 1;
-        if (grille[x][y]->type == VIDE) {
+        if (grille[x][y].type == VIDE) {
             robot.y = y;
         }
     }
@@ -39,28 +39,28 @@ void recule(robot_t robot, case_t** grille) {
     if (robot.dir == HAUT) {
         x = robot.x + 1;
         y = robot.y;
-        if (grille[x][y]->type == VIDE) {
+        if (grille[x][y].type == VIDE) {
             robot.x = x;
         }
     }
     else if (robot.dir == DROITE) {
         x = robot.x;
         y = robot.y - 1;
-        if (grille[x][y]->type == VIDE) {
+        if (grille[x][y].type == VIDE) {
             robot.y = y;
         }
     }
     else if (robot.dir == BAS) {
         x = robot.x - 1;
         y = robot.y;
-        if (grille[x][y]->type == VIDE) {
+        if (grille[x][y].type == VIDE) {
             robot.x = x;
         }
     }
     else if (robot.dir == GAUCHE) {
         x = robot.x;
         y = robot.y + 1;
-        if (grille[x][y]->type == VIDE) {
+        if (grille[x][y].type == VIDE) {
             robot.y = y;
         }
     }
@@ -116,19 +116,19 @@ int contenu(int dir, robot_t robot, case_t** grille) {
 
     if (dir == HAUT) {
         x--;
-        type = grille[x][y]->type;
+        type = grille[x][y].type;
     }
     else if (dir == DROITE) {
         y++;
-        type = grille[x][y]->type;
+        type = grille[x][y].type;
     }
     else if (dir == BAS) {
         x++;
-        type = grille[x][y]->type;
+        type = grille[x][y].type;
     }
     else if (dir == GAUCHE) {
         y--;
-        type = grille[x][y]->type;
+        type = grille[x][y].type;
     }
     return type;
 }
