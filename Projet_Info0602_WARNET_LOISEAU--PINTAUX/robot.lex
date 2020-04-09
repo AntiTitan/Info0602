@@ -11,8 +11,19 @@ void yyerror(const char *erreurMsg);
            yylval = atoi(yytext);
            return ENTIER;
          }
-[-+*/\.]	 { return *yytext; }
-[ \t\n]	 ; 
+"proc main()" { return DEBUTP; }
+"finproc"     { return FINP; }
+"avancer("    { return AVV; }
+"avance()"    { return AV; }
+"recule()"	  { return RE; }
+"droite()"	  { return DR; }
+"gauche()"	  { return GA; }
+"pose()"	    { return PO; }
+"prend()"	    { return PR; }
+"case("       { return CA; }
+")"           { return FIN; }
+\n            { return PUIS; }
+[ \t]	 ; 
 .        yyerror("Caractère non valide");
 
 %%

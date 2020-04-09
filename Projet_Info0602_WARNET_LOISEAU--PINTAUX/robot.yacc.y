@@ -1,5 +1,5 @@
 %{
-#include "proceduresS.h"
+#include "procedures.h"
 
 int yylex();
 void yyerror(const char *erreurMsg);
@@ -8,39 +8,51 @@ robot_t robot;
 %}
 
 %token ENTIER
-%left '+' '-'
-%left '*' '/'
+%token DEBUTP
+%token FINP
+%token AVV
+%token AV
+%token RE
+%token DR
+%token GA
+%token PO
+%token PR
+%token CA
+%token FIN
+%token PUIS
 
 %%
 
-programme: 'proc main()' expression 'finproc' {
-           printf("=%d\n", $1);
-      }
+programme: DEBUTP expression FINP {}
       |
       ;
 
-expression: ENTIER
-
-      | 'avance()' {
+expression:  AV {
         avance(robot, grille);
       }
-      | 'recule()' {
+      | RE {
         recule(robot, grille);
       }
-      | 'droite()' {
+      | DR {
         droite(robot);
       }
-      | 'gauche()' {
+      | GA {
         gauche(robot);
       }
-      | 'pose()' {
-        pose(robot);
+      | PO {
+        pose(robot, grille);
       }
-      | 'prend()' {
-        prend(robot);
+      | PR {
+        prend(robot, grille);
       }
-      | 'case('ENTIER')' {
-        contenu;/*mauvais*/
+      | AVV ENTIER FIN {
+        avancer($1, robot, grille);
+      }
+      | CA ENTIER FIN {
+        /*a voir, pas sure*/
+        contenu($1, robot, grille);
+      }
+      | expression PUIS expression {
       };
 
 %%
