@@ -13,7 +13,6 @@ void yyerror(const char *erreurMsg);
          }
 "proc main()" { return DEBUTP; }
 "finproc"     { return FINP; }
-"avancer("    { return AVV; }
 "avance()"    { return AV; }
 "recule()"	  { return RE; }
 "droite()"	  { return DR; }

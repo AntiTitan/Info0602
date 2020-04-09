@@ -10,7 +10,6 @@ robot_t robot;
 %token ENTIER
 %token DEBUTP
 %token FINP
-%token AVV
 %token AV
 %token RE
 %token DR
@@ -44,9 +43,6 @@ expression:  AV {
       }
       | PR {
         prend(robot, grille);
-      }
-      | AVV ENTIER FIN {
-        avancer($1, robot, grille);
       }
       | CA ENTIER FIN {
         /*a voir, pas sure*/
