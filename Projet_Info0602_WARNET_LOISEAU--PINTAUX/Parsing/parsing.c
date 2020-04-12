@@ -3,11 +3,10 @@
 
 #define MAX_SIZE 2048
 
-/*changer en fonction en lire_plateau*/
-/*man json-c: https://json-c.github.io/json-c/json-c-0.10/doc/html/json__object_8h.html  */
 int main(int argc, char *argv[]) {
     int fd,exists;
     char buffer[MAX_SIZE];
+    const char* dir;
 
     struct json_object *parsed_json;
     struct json_object *largeur;
@@ -15,12 +14,11 @@ int main(int argc, char *argv[]) {
     struct json_object *debut;
     struct json_object *cases;
 
-    /*struct json_object *x;
+    struct json_object *x;
     struct json_object *y;
-    struct json_object *direction;*/
+    struct json_object *direction;
     struct json_object *contenu;
 
-    size_t deb;
     size_t nb_cases;
     size_t i;
     
@@ -72,12 +70,28 @@ int main(int argc, char *argv[]) {
         printf("%lu. %s\n", i+1, json_object_get_string(contenu));
     }
 
-    deb = json_object_array_length(debut);
-    printf("nb element debut %lu\n", deb);
-    for (i=0; i<deb; i++) {
-        contenu = json_object_array_get_idx(debut,  i);
-        printf("%lu. %s\n", i+1, json_object_get_string(contenu));
+    contenu = json_object_array_get_idx(debut,  0);
+    printf("%lu. %s\n", i+1, json_object_get_string(contenu));
+    json_object_object_get_ex(contenu, "x", &x);
+    printf("x: %d\n", json_object_get_int(x));
+    json_object_object_get_ex(contenu, "y", &y);
+    printf("y: %d\n", json_object_get_int(y));
+    json_object_object_get_ex(contenu, "direction", &direction);
+    dir = json_object_get_string(direction);
+    
+    if (strcmp(dir, "HAUT") == 0) {
+        printf("haut\n");
     }
+    else if (strcmp(dir, "DROITE") == 0) {
+        printf("droite\n");
+    }
+    else if (strcmp(dir, "BAS") == 0) {
+        printf("bas\n");
+    }
+    else if (strcmp(dir, "GAUCHE") == 0) {
+        printf("gauche\n");
+    }
+    
 
-    return 0;
+    return EXIT_SUCCESS;
 }

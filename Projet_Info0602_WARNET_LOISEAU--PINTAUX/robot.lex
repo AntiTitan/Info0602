@@ -1,5 +1,5 @@
 %{
-#include "y.tab.h" 
+#include "y.tab.h"
 
 int yylex();
 void yyerror(const char *erreurMsg);
@@ -11,8 +11,15 @@ void yyerror(const char *erreurMsg);
            yylval = atoi(yytext);
            return ENTIER;
          }
-"proc main()" { return DEBUTP; }
+"proc"        { return DEBUTP; }
 "finproc"     { return FINP; }
+"main()"      { return MAIN; }
+"tantque("    { return WHILE; }
+"fintantque"  { return FINW; }
+"si("         { return IF; }
+"sinon"       { return ELSE; }
+"finsi"       { return ENDI; }
+"("           { return PAR; }
 "avance()"    { return AV; }
 "recule()"	  { return RE; }
 "droite()"	  { return DR; }
@@ -21,9 +28,17 @@ void yyerror(const char *erreurMsg);
 "prend()"	    { return PR; }
 "case("       { return CA; }
 ")"           { return FIN; }
-\n            { return PUIS; }
-[ \t]	 ; 
-.        yyerror("Caractère non valide");
+"="           { return EGAL; }
+"!="          { return DIFF; }
+"=="          { return TESTEG; }
+"<"           { return INF; }
+"<="          { return INFE; }
+">"           { return SUP; }
+">="          { return SUPE; }
+[a-z]         { yylval = yytext; return VAR; }
+[a-z]+        { yylval = yytext; return NOM; }
+[ \t\n]	      ; 
+.             yyerror("Caractère non valide");
 
 %%
 

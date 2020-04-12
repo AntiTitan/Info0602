@@ -11,10 +11,6 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-#define FAUX     0
-#define VRAI     1
-#define BOUCHE   2
-
 #define HAUT     0
 #define DROITE   1
 #define BAS      2
@@ -23,11 +19,10 @@
 /*un trou bouché par une bille devient du vide*/
 #define VIDE     0
 #define CAISSE   1
-#define BLOC     2
+#define OBSTACLE 2
 #define BILLE    3
 #define TROU     4
 
-/*x: colonne, y: ligne*/
 typedef struct {
     int x;
     int y;
