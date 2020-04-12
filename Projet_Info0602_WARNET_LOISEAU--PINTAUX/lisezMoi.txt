@@ -1,3 +1,16 @@
 Pour utiliser json en c:
 
 sudo apt install json-c-dev
+
+Pour l'execution:
+
+make
+./robot plateau1.json algo1.txt
+
+On n'a pas utiliser ncurses puisque le programme ne fonctionne pas donc il n'y aurait pas eu d'affichage
+
+
+Dans le dossier Fichier:
+make./fichier action.txt
+
+La lecture à partir du fichier fonctionne.

@@ -7,10 +7,7 @@ void yyerror(const char *erreurMsg);
 
 %%
 
-[0-9]+	 {
-           yylval = atoi(yytext);
-           return ENTIER;
-         }
+[0-9]+	      { yylval = atoi(yytext); return ENTIER; }
 "proc"        { return DEBUTP; }
 "finproc"     { return FINP; }
 "main()"      { return MAIN; }
@@ -35,6 +32,7 @@ void yyerror(const char *erreurMsg);
 "<="          { return INFE; }
 ">"           { return SUP; }
 ">="          { return SUPE; }
+[-+:,]        { return *yytext; }
 [a-z]         { yylval = yytext; return VAR; }
 [a-z]+        { yylval = yytext; return NOM; }
 [ \t\n]	      ; 

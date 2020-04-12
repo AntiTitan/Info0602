@@ -74,25 +74,25 @@ instruction: affectation
       | IF exp FIN instructions ELSE instructions ENDI
       ;
 
-affectation: VAR EGAL ENTIER
-      | VAR EGAL VAR '+' ENTIER
-      | VAR EGAL ENTIER '+' VAR
-      | VAR EGAL VAR '-' ENTIER
-      | VAR EGAL ENTIER '-' VAR
+affectation: VAR EGAL ENTIER { $1 = $3;}
+      | VAR EGAL VAR '+' ENTIER { $1 = $3 + $5;}
+      | VAR EGAL ENTIER '+' VAR { $1 = $3 + $5;}
+      | VAR EGAL VAR '-' ENTIER { $1 = $3 + $5;}
+      | VAR EGAL ENTIER '-' VAR { $1 = $3 + $5;}
       ;
 
-exp:    VAR DIFF VAR
-      | VAR DIFF ENTIER
-      | VAR TESTEG VAR
-      | VAR TESTEG ENTIER
-      | VAR INF VAR
-      | VAR INF ENTIER
-      | VAR INFE VAR
-      | VAR INFE ENTIER
-      | VAR SUP VAR
-      | VAR SUP ENTIER
-      | VAR SUPE VAR
-      | VAR SUPE ENTIER
+exp:    VAR DIFF VAR    { return ($1 != $3);}
+      | VAR DIFF ENTIER { return ($1 != $3);}
+      | VAR TESTEG VAR  { return ($1 != $3);}
+      | VAR TESTEG ENTIER { return ($1 != $3);}
+      | VAR INF VAR     { return ($1 != $3);}
+      | VAR INF ENTIER  { return ($1 != $3);}
+      | VAR INFE VAR    { return ($1 != $3);}
+      | VAR INFE ENTIER { return ($1 != $3);}
+      | VAR SUP VAR     { return ($1 != $3);}
+      | VAR SUP ENTIER  { return ($1 != $3);}
+      | VAR SUPE VAR    { return ($1 != $3);}
+      | VAR SUPE ENTIER { return ($1 != $3);}
       ;
 
 actions: actions procedure
